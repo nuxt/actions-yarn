@@ -13,13 +13,14 @@ action "Bats Test" {
   args = "test/*.bats"
 }
 
-action "Docker Lint" {
-  uses = "docker://replicated/dockerfilelint"
-  args = ["Dockerfile"]
-}
+# action "Docker Lint" {
+#   uses = "docker://replicated/dockerfilelint"
+#   args = ["Dockerfile"]
+# }
 
 action "Filter Master" {
-  needs = ["Shell Lint", "Bats Test", "Docker Lint"]
+#   needs = ["Shell Lint", "Bats Test", "Docker Lint"]
+  needs = ["Shell Lint", "Bats Test"]
   uses = "actions/bin/filter@master"
   args = "branch master"
 }
