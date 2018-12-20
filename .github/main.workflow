@@ -19,7 +19,7 @@ action "Bats Test" {
 # }
 
 action "Filter Master" {
-#   needs = ["Shell Lint", "Bats Test", "Docker Lint"]
+  #   needs = ["Shell Lint", "Bats Test", "Docker Lint"]
   needs = ["Shell Lint", "Bats Test"]
   uses = "actions/bin/filter@master"
   args = "branch master"
@@ -40,7 +40,10 @@ action "Docker Tag" {
 action "Docker Login" {
   needs = "Docker Build"
   uses = "actions/docker/login@master"
-  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
+  secrets = [
+    "DOCKER_PASSWORD",
+    "DOCKER_USERNAME",
+  ]
 }
 
 action "Docker Push" {
