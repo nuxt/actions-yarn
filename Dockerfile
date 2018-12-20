@@ -1,4 +1,4 @@
-FROM banian/node-headless-chrome:latest
+FROM node:10-slim
 
 LABEL version="1.0.0"
 LABEL repository="https://github.com/nuxt/actions-yarn"
