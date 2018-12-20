@@ -1,6 +1,6 @@
 workflow "Main" {
   on = "push"
-  resolves = "Docker Push"
+  resolves = "Docker Build"
 }
 
 action "Shell Lint" {
@@ -13,14 +13,13 @@ action "Bats Test" {
   args = "test/*.bats"
 }
 
-# action "Docker Lint" {
-#   uses = "docker://replicated/dockerfilelint"
-#   args = ["Dockerfile"]
-# }
+action "Docker Lint" {
+  uses = "docker://replicated/dockerfilelint"
+  args = ["Dockerfile"]
+}
 
 action "Filter Master" {
-  #   needs = ["Shell Lint", "Bats Test", "Docker Lint"]
-  needs = ["Shell Lint", "Bats Test"]
+  needs = ["Shell Lint", "Bats Test", "Docker Lint"]
   uses = "actions/bin/filter@master"
   args = "branch master"
 }
@@ -31,23 +30,23 @@ action "Docker Build" {
   args = "build -t actions-yarn ."
 }
 
-action "Docker Tag" {
-  needs = "Docker Build"
-  uses = "actions/docker/tag@master"
-  args = "actions-yarn nuxt/actions-yarn --no-latest"
-}
+# action "Docker Tag" {
+#   needs = "Docker Build"
+#   uses = "actions/docker/tag@master"
+#   args = "actions-yarn nuxt/actions-yarn --no-latest"
+# }
 
-action "Docker Login" {
-  needs = "Docker Build"
-  uses = "actions/docker/login@master"
-  secrets = [
-    "DOCKER_PASSWORD",
-    "DOCKER_USERNAME",
-  ]
-}
+# action "Docker Login" {
+#   needs = "Docker Build"
+#   uses = "actions/docker/login@master"
+#   secrets = [
+#     "DOCKER_PASSWORD",
+#     "DOCKER_USERNAME",
+#   ]
+# }
 
-action "Docker Push" {
-  needs = ["Docker Tag", "Docker Login"]
-  uses = "actions/docker/cli@master"
-  args = "push nuxt/actions-yarn"
-}
+# action "Docker Push" {
+#   needs = ["Docker Tag", "Docker Login"]
+#   uses = "actions/docker/cli@master"
+#   args = "push nuxt/actions-yarn"
+# }
