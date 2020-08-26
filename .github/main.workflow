@@ -14,7 +14,7 @@ action "Bats Test" {
 }
 
 action "Docker Lint" {
-  uses = "docker://replicated/dockerfilelint"
+  uses = "docker://replicated/dockerfilelint@sha256:861072158830bd6af2ab9236a2ac4b51533996b02cb176b2a5a34e7ce62f9bff"
   args = ["Dockerfile"]
 }
 
