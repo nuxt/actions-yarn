@@ -1,4 +1,4 @@
-FROM node:11
+FROM node:17
 
 LABEL version="1.1.0"
 LABEL repository="https://github.com/nuxt/actions-yarn"
