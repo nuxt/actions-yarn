@@ -1,3 +1,6 @@
+> [!NOTE]
+> This repository is archived. This action is no longer maintained. Use [`actions/setup-node`](https://github.com/actions/setup-node) to install Node.js and run `yarn` directly.
+
 # GitHub Action for Yarn
 
 This Action for [yarn](https://yarnpkg.com/en/) enables arbitrary actions with the `yarn` command-line client, including testing packages and publishing to a registry.
